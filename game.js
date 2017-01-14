@@ -40,7 +40,7 @@ function update() {
 
 //updateIncome function
 function updateIncome(){
-	income = income + 1;
+	income = income + i;
 	incomeText.text = "Income: " + income
 }
 
