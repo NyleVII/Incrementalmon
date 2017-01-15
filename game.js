@@ -18,6 +18,7 @@ function preload() {
 	//load assets
 	game.load.image('player', 'assets/Blue_Yoshi_Egg.png');
 	game.load.spritesheet('button', 'assets/Red_Yoshi_Egg.png', 1317, 1579);
+	game.load.spritesheet('greenbutton', 'assets/Green_Yoshi_Egg.png', 1317, 1579);
 }
 function create() {
 	button = game.add.button(game.world.centerX, game.world.centerY, 'button', updateIncome);
@@ -27,6 +28,10 @@ function create() {
 	button.onInputOut.add(buttonScale,this);
 	button.onInputDown.add(buttonScaleSmall,this);
 	button.onInputUp.add(buttonScale,this);
+
+	greenbutton = game.add.button(game.world.centerX+150, game.world.centerY, 'greenbutton', updateIncome);
+	greenbutton.anchor.setTo(0.5,0.5);
+	greenbutton.scale.setTo(0.1,0.1);
 
 	//place score text on the screen
 	gilText = game.add.text(5, 3, "Gil: " + gil);
@@ -41,7 +46,7 @@ function update() {
 //updateIncome function
 function updateIncome(){
 	income = income + i;
-	incomeText.text = "Income: " + income
+	incomeText.text = "Income: " + income;
 }
 
 //updateGil function
