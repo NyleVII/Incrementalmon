@@ -1,6 +1,8 @@
+//AUTHOR: Stephen Antymis
+//VERSION: 0.0.1 Jan 16, 2017
 //set width and height variables for game
 var width = 800;  //480
-var height = 600; //320 TEST EDIT
+var height = 600; //320
 //create game object and initialize the canvas
 var game = new Phaser.Game(width, height, Phaser.AUTO, null, {preload: preload, create: create, update: update});
 
