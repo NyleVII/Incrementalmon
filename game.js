@@ -14,6 +14,7 @@ var height = 600; //320
 //create game object and initialize the canvas
 var game = new Phaser.Game(width, height, Phaser.AUTO, null, {preload: preload, create: create, update: update});
 
+var music;
 
 //initialize some variables
 var gil = 0;
@@ -34,6 +35,7 @@ function preload() {
 	game.load.spritesheet('button', 'assets/Red_Yoshi_Egg.png', 1317, 1579);
 	game.load.spritesheet('greenbutton', 'assets/Green_Yoshi_Egg.png', 1317, 1579);
 	game.load.spritesheet('settings', 'assets/settings.png', 512, 512);
+	game.load.spritesheet('playPause', 'assets/playpause.png', 288, 251) //image is 577x251
 }
 function create() {
 	//Code to keep game running when not in focus (still might pause when game tab isn't visible)
@@ -42,6 +44,9 @@ function create() {
 	//Create and play music
 	music = game.add.audio('music');
 	music.play();
+	musicButton = game.add.button(700, 2, 'playPause', musicToggle, this, 0, 1);
+	musicButton.scale.setTo(0.1,0.1);
+
 
 	//Settings button
 	settingsButton = game.add.button(748, 2, 'settings', toggleSettingsMenu);
@@ -51,6 +56,7 @@ function create() {
 	settingsMenu = game.add.group();
 	var settingsWindow = settingsMenu.create(game.world.centerX, game.world.centerY, 'player');
 	settingsWindow.anchor.setTo(0.5,0.5);
+	toggleSettingsMenu(); //Sets the visibility to default to off, was having problems with settingsWindow.visible = false;
 
 
 
@@ -106,6 +112,13 @@ function toggleSettingsMenu(){
 	settingsMenu.visible = !settingsMenu.visible;
 }
 
+//Function toggles music on or off
+function musicToggle(){
+	if (music.isPlaying == true)
+		music.pause();
+	else
+		music.play();
+}
 
 
 
