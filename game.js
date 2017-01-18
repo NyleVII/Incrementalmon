@@ -15,12 +15,16 @@ var height = 600; //320
 var game = new Phaser.Game(width, height, Phaser.AUTO, null, {preload: preload, create: create, update: update});
 
 var music;
+var musicButton;
 
 //initialize some variables
 var gil = 0;
 var income = 0;
 var incomeText;
 var gilText;
+var year = 1;
+var day = 1;
+var season = "Spring";
 var i = 1;
 
 function preload() {
@@ -30,6 +34,8 @@ function preload() {
 	//load assets
 	//load music
 	game.load.audio('music','assets/Valse di Fantastica.mp3');
+	//game.load.audio('music','assets/Valse di Fantastica(World).mp3');
+
 	//load images
 	game.load.image('player', 'assets/Blue_Yoshi_Egg.png');
 	game.load.spritesheet('button', 'assets/Red_Yoshi_Egg.png', 1317, 1579);
@@ -43,9 +49,12 @@ function create() {
 
 	//Create and play music
 	music = game.add.audio('music');
+	music.loop = true;
 	music.play();
-	musicButton = game.add.button(700, 2, 'playPause', musicToggle, this, 0, 1);
-	musicButton.scale.setTo(0.1,0.1);
+	musicButton = game.add.button(690, 2, 'playPause', musicToggle);
+	musicButton.frame = 1; //Set music button to display 'pause' initially
+	musicButton.scale.setTo(0.2,0.2);
+	
 
 
 	//Settings button
@@ -58,6 +67,16 @@ function create() {
 	settingsWindow.anchor.setTo(0.5,0.5);
 	toggleSettingsMenu(); //Sets the visibility to default to off, was having problems with settingsWindow.visible = false;
 
+	//Time group
+	timeGroup = game.add.group();
+	timeGroupAnchorX = 100;
+	timeGroupAnchorY = 100;
+	yearText = game.add.text(timeGroupAnchorX, timeGroupAnchorY,"Year: " + year, {/*style*/}, timeGroup); //text = game.add.text(0, 0, "Text", {/*style*/}, otherGroup); from http://www.html5gamedevs.com/topic/2606-can-text-be-added-to-a-group-or-only-sprites/
+	dayText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+30,"Day: " + day, {/*style*/}, timeGroup);
+	seasonText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+60,"Season: " + season, {/*style*/}, timeGroup);
+
+	
+
 
 
 	//Center red egg
@@ -69,7 +88,7 @@ function create() {
 	button.onInputDown.add(buttonScaleSmall,this);
 	button.onInputUp.add(buttonScale,this);
 
-	greenbutton = game.add.button(game.world.centerX+150, game.world.centerY, 'greenbutton', updateIncome);
+	greenbutton = game.add.button(game.world.centerX+150, game.world.centerY, 'greenbutton', incrementTime);
 	greenbutton.anchor.setTo(0.5,0.5);
 	greenbutton.scale.setTo(0.1,0.1);
 
@@ -112,16 +131,60 @@ function toggleSettingsMenu(){
 	settingsMenu.visible = !settingsMenu.visible;
 }
 
+//Function that toggles on and off visibility of timeGroup
+function toggleTimeGroup(){
+	timeGroup.visible = !timeGroup.visible;
+}
+
 //Function toggles music on or off
 function musicToggle(){
-	if (music.isPlaying == true)
+	if (music.isPlaying == true){
 		music.pause();
-	else
+		musicButton.frame = 0; //Set button to display 'play'
+	}
+	else{
 		music.play();
+		musicButton.frame = 1; //Set button to display 'pause'
+	}
 }
 
 
+//Function to increment time
+//25 days each season, 4 seasons in a year
+//Spring -> Summer -> Fall -> Winter
+function incrementTime(){
+	if(day == 25){
+		day = 1;
 
+		//Switch to handle changing of seasons and years
+		switch(season){
+			case "Spring":
+				season = "Summer";
+				break;
+			case "Summer":
+				season = "Fall";
+				break;
+			case "Fall":
+				season = "Winter";
+				break;
+			case "Winter":
+				season = "Spring";
+				year++;
+				break;
+			default:
+				season = "Oh shit what have you done?!";
+				break;
+		}
+	}
+	else{
+		day++;
+	}
+
+	//Update all time text variables
+	yearText.text = "Year: " + year;
+	dayText.text = "Day: " + day;
+	seasonText.text = "Season: " + season;
+}
 
 
 
