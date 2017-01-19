@@ -1,29 +1,8 @@
-/* This is leftover garbage which only creates a single instance of an object
-
-var monsterClass = {
-    //Misc. stats
-    name:"Monster Name",
-    age: 0,
-    birthday: 1,
-    birthseason: "Spring",
-    weight: 1,
-    happiness: 100,
-    hunger: 100,
-
-    //Battle stats
-    maxhp: 10,
-    currenthp: 10,
-    strength: 1,
-    intelligence: 1,
-    speed: 1,
-    defence: 1,
-
-    evoStage: "bit"
-};
-*/
 
 
-function Monster(   name,
+//Function prototype for creating new instances of monsters
+function Monster(   //Misc. stats
+                    name,
                     age,
                     birthday,
                     birthseason,
@@ -31,6 +10,7 @@ function Monster(   name,
                     happiness,
                     hunger,
                     
+                    //Battle stats
                     maxhp,
                     currenthp,
                     strength,
@@ -56,3 +36,53 @@ function Monster(   name,
 
     this.evoStage = evoStage;
 }
+
+/*
+MONSTER CLASSES:
+Class Elite
+Class SSS
+Class SS
+Class S
+Class A
+Class B
+Class C
+CLass E
+
+*/
+
+// var player = new Monster("Nyle", 0, 1, "Spring", 2, 100, 100, 10, 10, 1, 1, 1, 1, "Bit");
+var randomNames = [ "Saitama",
+                    "Boros",
+                    "Nyle",
+                    "Anix",
+                    "Teq",
+                    "Gocky",
+                    "Bankai",
+                    "Yshtola",
+                    "Bahamut",
+                    "Groribas",
+                    "Kain",
+                    "Cecil",
+                    "Celes",
+                    "Geralt",
+                    "Roche",
+                    "Iorveth",
+                    "Prometherion",
+                    "Kryptikk",
+                    "Arwen",
+                    "Ayewin",
+                    "Beerus",
+                    "Sargeras",
+                    "Sailon",
+                    "Thane",
+                    "Araenea",
+                    "Arthas",
+                    "Terra",
+                    "Bleb Bleb",
+                    "Sonic",
+                    "Sauron",
+                    "Smaug",
+                    
+                    
+                    "Ash"
+                    ];
