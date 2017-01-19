@@ -1,9 +1,9 @@
 //AUTHOR: Stephen Antymis
 //VERSION: 0.0.1 Jan 16, 2017
-//HOSTED LIVE AT: https://github.com/NyleVII/Incrementalmon
+//REPOSITORY: https://github.com/NyleVII/Incrementalmon
 //GAME AVAILABLE AT: https://nylevii.github.io/Incrementalmon/
 //RESOURCES:
-//Health Bars
+// Health Bars
 // https://github.com/bmarwane/phaser.healthbar
 
 
@@ -26,6 +26,7 @@ var year = 1;
 var day = 1;
 var season = "Spring";
 var i = 1;
+var player = new Monster("Nyle", 0, 1, "Spring", 2, 100, 100, 10, 10, 1, 1, 1, 1, "bit");
 
 function preload() {
 	//set background color of canvas
@@ -106,7 +107,7 @@ function update() {
 
 //updateIncome function
 function updateIncome(){
-	income = income + i;
+	income = income + i + gil;
 	incomeText.text = "Income: " + income;
 }
 
@@ -185,6 +186,3 @@ function incrementTime(){
 	dayText.text = "Day: " + day;
 	seasonText.text = "Season: " + season;
 }
-
-
-
