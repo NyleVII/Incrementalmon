@@ -9,10 +9,10 @@
 
 
 //set width and height variables for game
-var width = 800;  //480
-var height = 600; //320
+var WINDOW_WIDTH = 1280;  //480
+var WINDOW_HEIGHT = 720; //320
 //create game object and initialize the canvas
-var game = new Phaser.Game(width, height, Phaser.AUTO, null, {preload: preload, create: create, update: update});
+var game = new Phaser.Game(WINDOW_WIDTH, WINDOW_HEIGHT, Phaser.AUTO, null, {preload: preload, create: create, update: update});
 
 var music;
 var musicButton;
@@ -26,7 +26,7 @@ var year = 1;
 var day = 1;
 var season = "Spring";
 var i = 1;
-var player = new Monster("Nyle", 0, 1, "Spring", 2, 100, 100, 10, 10, 1, 1, 1, 1, "bit");
+var player = new Monster("Nyle", 0, 1, "Spring", 2, 100, 100, 10, 10, 1, 1, 1, 1, "Bit");
 
 function preload() {
 	//set background color of canvas
@@ -48,19 +48,19 @@ function create() {
 	//Code to keep game running when not in focus (still might pause when game tab isn't visible)
 	game.stage.disableVisibilityChange = true;
 
+	//Settings button
+	settingsButton = game.add.button(WINDOW_WIDTH, 0, 'settings', toggleSettingsMenu);
+	settingsButton.anchor.setTo(1,0); //Anchor set to top right corner
+	settingsButton.scale.setTo(0.1,0.1);
+
 	//Create and play music
 	music = game.add.audio('music');
 	music.loop = true;
 	music.play();
-	musicButton = game.add.button(690, 2, 'playPause', musicToggle);
+	musicButton = game.add.button(settingsButton.left - settingsButton.width - 5, 0, 'playPause', musicToggle);
 	musicButton.frame = 1; //Set music button to display 'pause' initially
 	musicButton.scale.setTo(0.2,0.2);
 	
-
-
-	//Settings button
-	settingsButton = game.add.button(748, 2, 'settings', toggleSettingsMenu);
-	settingsButton.scale.setTo(0.1,0.1);
 
 	//Create settingsMenu group
 	settingsMenu = game.add.group();
@@ -70,13 +70,29 @@ function create() {
 
 	//Time group
 	timeGroup = game.add.group();
-	timeGroupAnchorX = 100;
-	timeGroupAnchorY = 100;
+	timeGroupAnchorX = 200;
+	timeGroupAnchorY = 0;
 	yearText = game.add.text(timeGroupAnchorX, timeGroupAnchorY,"Year: " + year, {/*style*/}, timeGroup); //text = game.add.text(0, 0, "Text", {/*style*/}, otherGroup); from http://www.html5gamedevs.com/topic/2606-can-text-be-added-to-a-group-or-only-sprites/
 	dayText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+30,"Day: " + day, {/*style*/}, timeGroup);
 	seasonText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+60,"Season: " + season, {/*style*/}, timeGroup);
 
-	
+	//Monster Stats group
+	monsterStatsGroup = game.add.group();
+	monsterStatsGroupAnchorX = 5;
+	monsterStatsGroupAnchorY = 60;
+	monsterStatsTextOffset = 30;
+	monsterStatsNameText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*0, 	"Name: " + player.name, {/*style*/}, monsterStatsGroup);
+	monsterStatsAgeText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*1, 		"Age: " + player.age, {/*style*/}, monsterStatsGroup);
+	monsterStatsBirthdayText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*2, "Birthday: " + player.birthseason + " " + player.birthday, {/*style*/}, monsterStatsGroup);
+	monsterStatsWeightText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*3, 	"Weight: " + player.weight, {/*style*/}, monsterStatsGroup);
+	monsterStatsHappinessText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*4,"Happiness: " + player.happiness, {/*style*/}, monsterStatsGroup);
+	monsterStatsHungerText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*5, 	"Hunger: " + player.hunger, {/*style*/}, monsterStatsGroup);
+	monsterStatsHPText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*6, 		"HP: " + player.currenthp + "/" + player.maxhp, {/*style*/}, monsterStatsGroup);
+	monsterStatsStrengthText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*7, "Str: " + player.strength, {/*style*/}, monsterStatsGroup);
+	monsterStatsIntelligenceText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*8, "Int: " + player.intelligence, {/*style*/}, monsterStatsGroup);
+	monsterStatsSpeedText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*9, 	"Speed: " + player.speed, {/*style*/}, monsterStatsGroup);
+	monsterStatsDefenceText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*10, "Defence: " + player.defence, {/*style*/}, monsterStatsGroup);
+	monsterStatsEvoStageText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*11,"Stage:" + player.evoStage, {/*style*/}, monsterStatsGroup);
 
 
 
@@ -135,6 +151,11 @@ function toggleSettingsMenu(){
 //Function that toggles on and off visibility of timeGroup
 function toggleTimeGroup(){
 	timeGroup.visible = !timeGroup.visible;
+}
+
+//Function that toggles on and off visibility of monsterStatsGroup
+function toggleMonsterStatsGroup(){
+	monsterStatsGroup.visible = !monsterStatsGroup.visible;
 }
 
 //Function toggles music on or off
