@@ -56,6 +56,7 @@ function create() {
 	//Create and play music
 	music = game.add.audio('music');
 	music.loop = true;
+	music.volume = 0.3;
 	music.play();
 	musicButton = game.add.button(settingsButton.left - settingsButton.width - 5, 0, 'playPause', musicToggle);
 	musicButton.frame = 1; //Set music button to display 'pause' initially
