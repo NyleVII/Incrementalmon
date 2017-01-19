@@ -70,7 +70,7 @@ function create() {
 
 	//Time group
 	timeGroup = game.add.group();
-	timeGroupAnchorX = 200;
+	timeGroupAnchorX = 300;
 	timeGroupAnchorY = 0;
 	yearText = game.add.text(timeGroupAnchorX, timeGroupAnchorY,"Year: " + year, {/*style*/}, timeGroup); //text = game.add.text(0, 0, "Text", {/*style*/}, otherGroup); from http://www.html5gamedevs.com/topic/2606-can-text-be-added-to-a-group-or-only-sprites/
 	dayText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+30,"Day: " + day, {/*style*/}, timeGroup);
@@ -79,7 +79,7 @@ function create() {
 	//Monster Stats group
 	monsterStatsGroup = game.add.group();
 	monsterStatsGroupAnchorX = 5;
-	monsterStatsGroupAnchorY = 60;
+	monsterStatsGroupAnchorY = 0;
 	monsterStatsTextOffset = 30;
 	monsterStatsNameText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*0, 	"Name: " + player.name, {/*style*/}, monsterStatsGroup);
 	monsterStatsAgeText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*1, 		"Age: " + player.age, {/*style*/}, monsterStatsGroup);
@@ -110,8 +110,8 @@ function create() {
 	greenbutton.scale.setTo(0.1,0.1);
 
 	//place score text on the screen
-	gilText = game.add.text(5, 3, "Gil: " + gil);
-	incomeText = game.add.text(5,30,"Income: " + income);
+	gilText = game.add.text(game.world.centerX - 60, game.world.centerY + 80, "Gil: " + gil);
+	incomeText = game.add.text(game.world.centerX - 60,game.world.centerY + 110,"Income: " + income);
 
 	game.time.events.loop(Phaser.Timer.QUARTER, updateGil, this);
 
