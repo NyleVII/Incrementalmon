@@ -43,10 +43,18 @@ function preload() {
 	game.load.spritesheet('greenbutton', 'assets/Green_Yoshi_Egg.png', 1317, 1579);
 	game.load.spritesheet('settings', 'assets/settings.png', 512, 512);
 	game.load.spritesheet('playPause', 'assets/playpause.png', 288, 251) //image is 577x251
+	game.load.image('dojoBackground', 'assets/dojoBackground.png');
+	game.load.image('blueButton', 'assets/BlueButton200x81.png');
 }
 function create() {
+	//Set background image
+	background = game.add.tileSprite(0,0,1280,720, 'dojoBackground');
+
 	//Code to keep game running when not in focus (still might pause when game tab isn't visible)
 	game.stage.disableVisibilityChange = true;
+
+	//Button Text style
+	var textStyle = { font: "25px Arial", wordWrap: false, wordWrapWidth: 190, align: "center", strokeThickness: 6, fill: 'white'};
 
 	//Settings button
 	settingsButton = game.add.button(WINDOW_WIDTH, 0, 'settings', toggleSettingsMenu);
@@ -73,27 +81,36 @@ function create() {
 	timeGroup = game.add.group();
 	timeGroupAnchorX = 300;
 	timeGroupAnchorY = 0;
-	yearText = game.add.text(timeGroupAnchorX, timeGroupAnchorY,"Year: " + year, {/*style*/}, timeGroup); //text = game.add.text(0, 0, "Text", {/*style*/}, otherGroup); from http://www.html5gamedevs.com/topic/2606-can-text-be-added-to-a-group-or-only-sprites/
-	dayText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+30,"Day: " + day, {/*style*/}, timeGroup);
-	seasonText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+60,"Season: " + season, {/*style*/}, timeGroup);
+	//text = game.add.text(x, y, "Text", {/*style*/}, otherGroup); from http://www.html5gamedevs.com/topic/2606-can-text-be-added-to-a-group-or-only-sprites/
+	yearText = game.add.text(timeGroupAnchorX, timeGroupAnchorY,"Year: " + year, textStyle, timeGroup); 
+	dayText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+30,"Day: " + day, textStyle, timeGroup);
+	seasonText = game.add.text(timeGroupAnchorX, timeGroupAnchorY+60,"Season: " + season, textStyle, timeGroup);
 
 	//Monster Stats group
 	monsterStatsGroup = game.add.group();
 	monsterStatsGroupAnchorX = 5;
 	monsterStatsGroupAnchorY = 0;
 	monsterStatsTextOffset = 30;
-	monsterStatsNameText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*0, 	"Name: " + player.name, {/*style*/}, monsterStatsGroup);
-	monsterStatsAgeText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*1, 		"Age: " + player.age, {/*style*/}, monsterStatsGroup);
-	monsterStatsBirthdayText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*2, "Birthday: " + player.birthseason + " " + player.birthday, {/*style*/}, monsterStatsGroup);
-	monsterStatsWeightText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*3, 	"Weight: " + player.weight, {/*style*/}, monsterStatsGroup);
-	monsterStatsHappinessText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*4,"Happiness: " + player.happiness, {/*style*/}, monsterStatsGroup);
-	monsterStatsHungerText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*5, 	"Hunger: " + player.hunger, {/*style*/}, monsterStatsGroup);
-	monsterStatsHPText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*6, 		"HP: " + player.currenthp + "/" + player.maxhp, {/*style*/}, monsterStatsGroup);
-	monsterStatsStrengthText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*7, "Str: " + player.strength, {/*style*/}, monsterStatsGroup);
-	monsterStatsIntelligenceText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*8, "Int: " + player.intelligence, {/*style*/}, monsterStatsGroup);
-	monsterStatsSpeedText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*9, 	"Speed: " + player.speed, {/*style*/}, monsterStatsGroup);
-	monsterStatsDefenceText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*10, "Defence: " + player.defence, {/*style*/}, monsterStatsGroup);
-	monsterStatsEvoStageText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*11,"Stage:" + player.evoStage, {/*style*/}, monsterStatsGroup);
+	monsterStatsNameText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*0, 	"Name: " + player.name, textStyle, monsterStatsGroup);
+	monsterStatsAgeText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*1, 		"Age: " + player.age, textStyle, monsterStatsGroup);
+	monsterStatsBirthdayText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*2, "Birthday: " + player.birthseason + " " + player.birthday, textStyle, monsterStatsGroup);
+	monsterStatsWeightText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*3, 	"Weight: " + player.weight, textStyle, monsterStatsGroup);
+	monsterStatsHappinessText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*4,"Happiness: " + player.happiness, textStyle, monsterStatsGroup);
+	monsterStatsHungerText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*5, 	"Hunger: " + player.hunger, textStyle, monsterStatsGroup);
+	monsterStatsHPText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*6, 		"HP: " + player.currenthp + "/" + player.maxhp, textStyle, monsterStatsGroup);
+	monsterStatsStrengthText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*7, "Str: " + player.strength, textStyle, monsterStatsGroup);
+	monsterStatsIntelligenceText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*8, "Int: " + player.intelligence, textStyle, monsterStatsGroup);
+	monsterStatsSpeedText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*9, 	"Speed: " + player.speed, textStyle, monsterStatsGroup);
+	monsterStatsDefenceText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*10, "Defence: " + player.defence, textStyle, monsterStatsGroup);
+	monsterStatsEvoStageText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*11,"Stage:" + player.evoStage, textStyle, monsterStatsGroup);
+
+	//Game Menu group
+	gameMenuGroup = game.add.group();
+	trainButton = game.add.button(5,WINDOW_HEIGHT - 86, 'blueButton', updateIncome);
+	gameMenuGroup.add(trainButton);
+	trainButtonText = game.add.text(Math.floor(trainButton.x + trainButton.width/2) , Math.floor(trainButton.y + trainButton.height/2), "Train", textStyle, gameMenuGroup);
+	trainButtonText.anchor.setTo(0.5,0.5);
+	gameMenuGroup.add(trainButtonText);
 
 
 
@@ -111,20 +128,22 @@ function create() {
 	greenbutton.scale.setTo(0.1,0.1);
 
 	//place score text on the screen
-	gilText = game.add.text(game.world.centerX - 60, game.world.centerY + 80, "Gil: " + gil);
-	incomeText = game.add.text(game.world.centerX - 60,game.world.centerY + 110,"Income: " + income);
+	gilText = game.add.text(game.world.centerX - 60, game.world.centerY + 80, "Gil: " + gil, textStyle);
+	incomeText = game.add.text(game.world.centerX - 60,game.world.centerY + 110,"Income: " + income, textStyle);
 
 	game.time.events.loop(Phaser.Timer.QUARTER, updateGil, this);
 
 
 }
 function update() {
+//Update train button text to keep text centered
+
 
 }
 
 //updateIncome function
 function updateIncome(){
-	income = income + i + gil;
+	income = income + 1;
 	incomeText.text = "Income: " + income;
 }
 
