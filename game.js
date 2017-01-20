@@ -106,7 +106,7 @@ function create() {
 
 	//Game Menu group
 	gameMenuGroup = game.add.group();
-
+	
 	trainButton = game.add.button(5,WINDOW_HEIGHT - 86, 'blueButton', updateIncome);
 	gameMenuGroup.add(trainButton);
 	trainButtonText = game.add.text(Math.floor(trainButton.x + trainButton.width/2) , Math.floor(trainButton.y + trainButton.height/2), "Train", textStyle, gameMenuGroup);
