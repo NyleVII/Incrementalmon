@@ -102,17 +102,32 @@ function create() {
 	monsterStatsIntelligenceText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*8, "Int: " + player.intelligence, textStyle, monsterStatsGroup);
 	monsterStatsSpeedText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*9, 	"Speed: " + player.speed, textStyle, monsterStatsGroup);
 	monsterStatsDefenceText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*10, "Defence: " + player.defence, textStyle, monsterStatsGroup);
-	monsterStatsEvoStageText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*11,"Stage:" + player.evoStage, textStyle, monsterStatsGroup);
+	monsterStatsEvoStageText = game.add.text(monsterStatsGroupAnchorX, monsterStatsGroupAnchorY + monsterStatsTextOffset*11,"Stage: " + player.evoStage, textStyle, monsterStatsGroup);
 
 	//Game Menu group
 	gameMenuGroup = game.add.group();
+
 	trainButton = game.add.button(5,WINDOW_HEIGHT - 86, 'blueButton', updateIncome);
 	gameMenuGroup.add(trainButton);
 	trainButtonText = game.add.text(Math.floor(trainButton.x + trainButton.width/2) , Math.floor(trainButton.y + trainButton.height/2), "Train", textStyle, gameMenuGroup);
 	trainButtonText.anchor.setTo(0.5,0.5);
 	gameMenuGroup.add(trainButtonText);
 
+	feedButton = game.add.button(210, WINDOW_HEIGHT - 86, 'blueButton', incrementTime);
+	gameMenuGroup.add(feedButton);
+	feedButtonText = game.add.text(Math.floor(feedButton.x + feedButton.width/2) , Math.floor(feedButton.y + feedButton.height/2), "Feed", textStyle, gameMenuGroup);
+	feedButtonText.anchor.setTo(0.5,0.5);
+	gameMenuGroup.add(feedButtonText);
 
+	//Tournaments button
+
+	//Rest button
+
+	//Battle
+
+	//Items
+
+	//Town
 
 	//Center red egg
 	button = game.add.button(game.world.centerX, game.world.centerY, 'button', updateIncome);
@@ -123,7 +138,7 @@ function create() {
 	button.onInputDown.add(buttonScaleSmall,this);
 	button.onInputUp.add(buttonScale,this);
 
-	greenbutton = game.add.button(game.world.centerX+150, game.world.centerY, 'greenbutton', incrementTime);
+	greenbutton = game.add.button(game.world.centerX+150, game.world.centerY, 'greenbutton', toggleGameMenuGroup);
 	greenbutton.anchor.setTo(0.5,0.5);
 	greenbutton.scale.setTo(0.1,0.1);
 
@@ -176,6 +191,11 @@ function toggleTimeGroup(){
 //Function that toggles on and off visibility of monsterStatsGroup
 function toggleMonsterStatsGroup(){
 	monsterStatsGroup.visible = !monsterStatsGroup.visible;
+}
+
+//Function that toggles on and off visibility of gameMenuGroup
+function toggleGameMenuGroup(){
+	gameMenuGroup.visible = !gameMenuGroup.visible;
 }
 
 //Function toggles music on or off
