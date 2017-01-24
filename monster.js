@@ -98,6 +98,9 @@ var randomNames = [ "Saitama",
                     "Thor",
                     "Fenrir",
                     "Asator",
+                    //submitted
+                    "Shan",
+                    "Virul",
 
                     
                     "Ash"
