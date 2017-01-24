@@ -64,9 +64,13 @@ var randomNames = [ "Saitama",
                     "Kain",
                     "Cecil",
                     "Celes",
+                    //Witcher
                     "Geralt",
                     "Roche",
                     "Iorveth",
+                    "Triss",
+                    "Yennefer",
+                    "Ciri",
                     "Prometherion",
                     "Kryptikk",
                     "Arwen",
@@ -83,6 +87,18 @@ var randomNames = [ "Saitama",
                     "Sauron",
                     "Smaug",
                     "Mog'Darsh",
+                    //FFXV character names
+                    "Ardyn",
+                    "Noctis",
+                    "Gladio",
+                    "Ignis",
+                    "Prompto",
+                    //Mythology
+                    "Odyn",
+                    "Thor",
+                    "Fenrir",
+                    "Asator",
+
                     
                     "Ash"
                     ];

@@ -106,28 +106,54 @@ function create() {
 
 	//Game Menu group
 	gameMenuGroup = game.add.group();
-	
+	//Train button in game menu group
 	trainButton = game.add.button(5,WINDOW_HEIGHT - 86, 'blueButton', updateIncome);
 	gameMenuGroup.add(trainButton);
 	trainButtonText = game.add.text(Math.floor(trainButton.x + trainButton.width/2) , Math.floor(trainButton.y + trainButton.height/2), "Train", textStyle, gameMenuGroup);
 	trainButtonText.anchor.setTo(0.5,0.5);
 	gameMenuGroup.add(trainButtonText);
 
+	//Feed button in game menu group
 	feedButton = game.add.button(210, WINDOW_HEIGHT - 86, 'blueButton', incrementTime);
 	gameMenuGroup.add(feedButton);
 	feedButtonText = game.add.text(Math.floor(feedButton.x + feedButton.width/2) , Math.floor(feedButton.y + feedButton.height/2), "Feed", textStyle, gameMenuGroup);
 	feedButtonText.anchor.setTo(0.5,0.5);
 	gameMenuGroup.add(feedButtonText);
 
-	//Tournaments button
+	//Tournaments button in game menu group
+	tournamentButton = game.add.button(415, WINDOW_HEIGHT - 86, 'blueButton', incrementTime);
+	gameMenuGroup.add(tournamentButton);
+	tournamentButtonText = game.add.text(Math.floor(tournamentButton.x + tournamentButton.width/2), Math.floor(tournamentButton.y + tournamentButton.height/2), "Tournament", textStyle, gameMenuGroup);
+	tournamentButtonText.anchor.setTo(0.5,0.5);
+	gameMenuGroup.add(tournamentButtonText);
 
-	//Rest button
+	//Rest button in game menu group
+	restButton = game.add.button(620, WINDOW_HEIGHT - 86, 'blueButton', incrementTime);
+	gameMenuGroup.add(restButton);
+	restButtonText = game.add.text(Math.floor(restButton.x + restButton.width/2), Math.floor(restButton.y + restButton.height/2), "Rest", textStyle, gameMenuGroup);
+	restButtonText.anchor.setTo(0.5,0.5);
+	gameMenuGroup.add(restButtonText);
 
-	//Battle
+	//Battle in game menu group
+	battleButton = game.add.button(825, WINDOW_HEIGHT - 86, 'blueButton', incrementTime);
+	gameMenuGroup.add(battleButton);
+	battleButtonText = game.add.text(Math.floor(battleButton.x + battleButton.width/2), Math.floor(battleButton.y + battleButton.height/2), "Battle", textStyle, gameMenuGroup);
+	battleButtonText.anchor.setTo(0.5,0.5);
+	gameMenuGroup.add(battleButtonText);
 
-	//Items
+	//Items in game menu group
+	itemsButton = game.add.button(1030, WINDOW_HEIGHT - 86, 'blueButton', incrementTime);
+	gameMenuGroup.add(itemsButton);
+	itemsButtonText = game.add.text(Math.floor(itemsButton.x + itemsButton.width./2), Math.floor(itemsButton.y + itemsButton.height/2), "Items", textStyle, gameMenuGroup);
+	itemsButtonText.anchor.setTo(0.5,0.5);
+	gameMenuGroup.add(itemsButtonText);
 
-	//Town
+	//Town in game menu group
+	townButton = game.add.button(1235, WINDOW_HEIGHT - 86, 'blueButton', incrementTime);
+	gameMenuGroup.add(townButton);
+	townButtonText = game.add.text(Math.floor(townButton.x + townButton.width/2), Math.floor(townButton.y + townButton.height/2), "Town", textStyle, gameMenuGroup);
+	townButtonText.anchor.setTo(0.5,0.5);
+	gameMenuGroup.add(townButtonText);
 
 	//Center red egg
 	button = game.add.button(game.world.centerX, game.world.centerY, 'button', updateIncome);
