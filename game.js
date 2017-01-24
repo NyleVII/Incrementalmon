@@ -144,7 +144,7 @@ function create() {
 	//Items in game menu group
 	itemsButton = game.add.button(1030, WINDOW_HEIGHT - 86, 'blueButton', incrementTime);
 	gameMenuGroup.add(itemsButton);
-	itemsButtonText = game.add.text(Math.floor(itemsButton.x + itemsButton.width./2), Math.floor(itemsButton.y + itemsButton.height/2), "Items", textStyle, gameMenuGroup);
+	itemsButtonText = game.add.text(Math.floor(itemsButton.x + itemsButton.width/2), Math.floor(itemsButton.y + itemsButton.height/2), "Items", textStyle, gameMenuGroup);
 	itemsButtonText.anchor.setTo(0.5,0.5);
 	gameMenuGroup.add(itemsButtonText);
 
