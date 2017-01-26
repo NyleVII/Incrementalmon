@@ -53,8 +53,11 @@ CLass E
 // var player = new Monster("Nyle", 0, 1, "Spring", 2, 100, 100, 10, 10, 1, 1, 1, 1, "Bit");
 var randomNames = [ "Saitama",
                     "Boros",
+                    "Genos",
                     "Nyle",
                     "Anix",
+                    "Rakados",
+                    "Rakadoth",
                     "Teq",
                     "Gocky",
                     "Bankai",
