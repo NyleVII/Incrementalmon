@@ -5,8 +5,6 @@
 //RESOURCES:
 // Health Bars
 // https://github.com/bmarwane/phaser.healthbar
-test commit
-
 
 
 //set width and height variables for game
