@@ -33,17 +33,17 @@ function preload() {
 
 	//load assets
 	//load music
-	game.load.audio('music','assets/Valse di Fantastica.mp3');
-	//game.load.audio('music','assets/Valse di Fantastica(World).mp3');
+	game.load.audio('music','assets/bgm/Valse di Fantastica.mp3');
+	//game.load.audio('music','assets/bgm/Valse di Fantastica(World).mp3');
 
 	//load images
-	game.load.image('player', 'assets/Blue_Yoshi_Egg.png');
-	game.load.spritesheet('button', 'assets/Red_Yoshi_Egg.png', 1317, 1579);
-	game.load.spritesheet('greenbutton', 'assets/Green_Yoshi_Egg.png', 1317, 1579);
-	game.load.spritesheet('settings', 'assets/settings.png', 512, 512);
-	game.load.spritesheet('playPause', 'assets/playpause.png', 288, 251) //image is 577x251
-	game.load.image('dojoBackground', 'assets/dojoBackground.png');
-	game.load.image('blueButton', 'assets/BlueButton200x81.png');
+	game.load.image('player', 'assets/images/Blue_Yoshi_Egg.png');
+	game.load.spritesheet('button', 'assets/images/Red_Yoshi_Egg.png', 1317, 1579);
+	game.load.spritesheet('greenbutton', 'assets/images/Green_Yoshi_Egg.png', 1317, 1579);
+	game.load.spritesheet('settings', 'assets/images/settings.png', 512, 512);
+	game.load.spritesheet('playPause', 'assets/images/playpause.png', 288, 251) //image is 577x251
+	game.load.image('dojoBackground', 'assets/images/dojoBackground.png');
+	game.load.image('blueButton', 'assets/images/BlueButton200x81.png');
 }
 function create() {
 	//Set background image
